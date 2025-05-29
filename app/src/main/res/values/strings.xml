@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SellFoodMini</string>
+
+    <string name="search_bar_scrolling_view_behavior">com.google.android.material.behavior.SearchBarScrollingViewBehavior</string>
+</resources>

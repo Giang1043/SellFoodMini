@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.SellFoodMini" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="android:statusBarColor">#3F9441</item>
+    </style>
+
+    <style name="Theme.SellFoodMini" parent="Base.Theme.SellFoodMini" />
+</resources>

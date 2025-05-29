@@ -1,0 +1,98 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginVertical="8dp"
+    android:padding="10dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/light_shade_yellow">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:elevation="4dp"
+        android:padding="10dp">
+
+        <!-- Ảnh giỏ hàng (chỉ mang tính tượng trưng)-->
+        <ImageView
+            android:id="@+id/cartImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:contentDescription="Order"
+            android:background="@color/light_shade_green"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_shopping_cart_24px"/>
+
+        <!-- Mã đơn hàng -->
+        <TextView
+            android:id="@+id/orderId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/cartImage"
+            android:layout_marginHorizontal="10dp"
+            android:layout_toEndOf="@id/cartImage"
+            android:text="order ID"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+
+        <!-- trạng thái đơn hàng -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/orderStatusBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/orderId"
+            android:layout_toEndOf="@id/orderId"
+            android:backgroundTint="@android:color/transparent"
+            app:cardCornerRadius="25dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/black">
+
+            <TextView
+                android:id="@+id/orderStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:text="order status"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!--  ngày đặt hàng-->
+        <TextView
+            android:id="@+id/orderDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/cartImage"
+            android:layout_marginHorizontal="10dp"
+            android:layout_toEndOf="@id/cartImage"
+            android:text="dd-mm-yyyy"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="15sp" />
+
+        <!--  xem chi tiết-->
+        <Button
+            android:id="@+id/btnViewDetail"
+            style="@style/Widget.Material3.Button.TextButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/cartImage"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="-5dp"
+            android:layout_marginBottom="0dp"
+            android:paddingHorizontal="12dp"
+            android:text="View Detail"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="15sp"
+            app:icon="@drawable/ic_arrow_forward_24px"
+            app:iconSize="15dp"
+            app:iconGravity="end"
+            app:iconTint="@android:color/holo_blue_light" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
