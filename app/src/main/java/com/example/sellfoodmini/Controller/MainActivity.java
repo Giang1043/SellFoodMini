@@ -1,5 +1,6 @@
 package com.example.sellfoodmini.Controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.sellfoodmini.Controller.ChatbotActivity;
 import com.example.sellfoodmini.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         Title = findViewById(R.id.title);
         btnBack = findViewById(R.id.btnBack);
-//        btnSetting = findViewById(R.id.btnSetting);
+        btnSetting = findViewById(R.id.btnSetting); // Nếu đã thêm btnSetting
         bottomNavigation = findViewById(R.id.bottom_navigation);
 
         if (savedInstanceState == null) {
@@ -42,14 +44,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        btnSetting.setOnClickListener(v -> {
+        btnSetting.setOnClickListener(v -> {
             // TODO: Chuyển đến màn hình cài đặt (chưa cài đặt)
-//        });
+        });
 
         getSupportFragmentManager().addOnBackStackChangedListener(this::updateUI);
 
         bottomNavigation.setOnItemSelectedListener(item -> {
             if (isNavigating) return false;
+
+            if (item.getItemId() == R.id.nav_chatbot) {
+                startActivity(new Intent(MainActivity.this, ChatbotActivity.class));
+                return true;
+            }
 
             Fragment fragment = item.getItemId() == R.id.nav_home ? new HomeFragment() :
                     item.getItemId() == R.id.nav_order ? new CartFragment() :
@@ -62,15 +69,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadFragment(Fragment fragment, boolean addToBackStack) {
-        isNavigating = true; // Bắt đầu chuyển đổi Fragment
-
+        isNavigating = true;
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, fragment);
         if (addToBackStack) transaction.addToBackStack(null);
         transaction.commit();
-
         updateBackButtonState();
-        // Đợi một chút để hoàn thành chuyển đổi rồi mới bỏ cờ
         bottomNavigation.postDelayed(() -> isNavigating = false, 200);
     }
 
@@ -85,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
         } else if (fragment instanceof ProfileFragment) {
             navId = R.id.nav_profile;
         }
-
         setTitleForItem(navId);
         bottomNavigation.setSelectedItemId(navId);
         updateBackButtonState();
@@ -98,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
             Title.setText("Thông Tin Cá Nhân");
         } else if (itemId == R.id.nav_home) {
             Title.setText("Trang Chủ");
+        } else if (itemId == R.id.nav_chatbot) {
+            Title.setText("Chatbot"); // Đặt tiêu đề khi chọn Chatbot
         }
     }
 
@@ -107,4 +112,3 @@ public class MainActivity extends AppCompatActivity {
         btnBack.setAlpha(btnBack.isEnabled() ? 1f : 0.5f);
     }
 }
-
