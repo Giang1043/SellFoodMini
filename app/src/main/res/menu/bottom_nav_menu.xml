@@ -16,9 +16,4 @@
         android:icon="@drawable/ic_user_24px"
         android:title="Tài khoản"/>
 
-    <item
-        android:id="@+id/nav_chatbot"
-        android:icon="@drawable/ic_chatbot_24px"
-        android:title="Chatbot" />
-
 </menu>
